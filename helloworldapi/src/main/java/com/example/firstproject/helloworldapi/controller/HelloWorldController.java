@@ -24,9 +24,7 @@ import com.example.firstproject.helloworldapi.springdatajparepository.HelloSprin
 @RestController
 @Component
 public class HelloWorldController {
-	
-	@Value("${new.name}")
-	public String nameString;
+
 	
 	@Autowired
 	public HelloSpringDataJpaRepository helloSpringDataJpaRepository;
