@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.firstproject.helloworldapi.service.HelloWorldService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,7 @@ import com.example.firstproject.helloworldapi.springdatajparepository.HelloSprin
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
 @Component
+@Tag(name = "Hello World Controller", description = "Api to add new update users")
 public class HelloWorldController {
 
 	
@@ -46,8 +50,9 @@ public class HelloWorldController {
 	public List<Hello> getData(){
 		return helloSpringDataJpaRepository.findAll();
 	}
-	
-	@RequestMapping(value = "/name", method = RequestMethod.POST)
+
+	@Operation(summary = "API to add new person in database", description = "Adds a new person")
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public void setData(@RequestBody Hello hello) {
 		LOGGER.info("Hello -> {}", hello);
 		helloWorldService.saveHello(hello);
