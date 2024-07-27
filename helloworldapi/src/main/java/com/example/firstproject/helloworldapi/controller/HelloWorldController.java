@@ -54,17 +54,18 @@ public class HelloWorldController {
 	}
 	
 	@RequestMapping(value= "/getById", method = RequestMethod.GET)
-	public Optional<Hello> getDataById(@RequestParam(name="id") int id) {
-		Optional<Hello> hello =  helloSpringDataJpaRepository.findById(id);
-		return hello;
+	public Hello getDataById(@RequestParam(name="id") int id) {
+		Hello hello = helloSpringDataJpaRepository.findById(id);
+		LOGGER.info("Hello -> {}", hello);
+        return hello;
 	}
 	
-	@RequestMapping(value= "/getByName", method = RequestMethod.GET)
-	public Optional<Hello> getDataByName(@RequestParam(name="firstname") String firstname) {
-		Optional<Hello> hello = Optional.ofNullable(new Hello());
-		hello =  Optional.ofNullable(helloSpringDataJpaRepository.findByName(StringUtils.capitalize(firstname)));
-		return hello;
-	}
+//	@RequestMapping(value= "/getByName", method = RequestMethod.GET)
+//	public Optional<Hello> getDataByName(@RequestParam(name="firstname") String firstname) {
+//		Optional<Hello> hello = Optional.ofNullable(new Hello());
+//		hello =  Optional.ofNullable(helloSpringDataJpaRepository.findByName(StringUtils.capitalize(firstname)));
+//		return hello;
+//	}
 	
 
 	@RequestMapping(value = "/getByStatus", method = RequestMethod.GET)
@@ -86,6 +87,11 @@ public class HelloWorldController {
 		List<Hello> list = new ArrayList<Hello>();
 		list = helloSpringDataJpaRepository.findByDesignationAndStatus(StringUtils.capitalize(designation), status);
 		return list;
+	}
+
+	@RequestMapping(value = "/getByName", method = RequestMethod.GET)
+	public List<Hello> getByNameAndDesignation(@RequestParam(name="name") String name) {
+		return helloSpringDataJpaRepository.findByNameAndDesignation(name);
 	}
 
 }
