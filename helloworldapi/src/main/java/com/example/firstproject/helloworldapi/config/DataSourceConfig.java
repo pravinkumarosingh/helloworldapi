@@ -1,4 +1,4 @@
-package com.example.firstproject.helloworldapi.datasource;
+package com.example.firstproject.helloworldapi.config;
 
 import javax.sql.DataSource;
 
