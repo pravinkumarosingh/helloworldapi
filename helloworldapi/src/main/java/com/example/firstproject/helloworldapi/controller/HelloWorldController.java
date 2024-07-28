@@ -3,24 +3,21 @@ package com.example.firstproject.helloworldapi.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import com.example.firstproject.helloworldapi.service.HelloWorldService;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.util.StringUtils;
 
 import com.example.firstproject.helloworldapi.model.Hello;
-import com.example.firstproject.helloworldapi.springdatajparepository.HelloSpringDataJpaRepository;
+import com.example.firstproject.helloworldapi.repository.HelloSpringDataJpaRepository;
 
 
 

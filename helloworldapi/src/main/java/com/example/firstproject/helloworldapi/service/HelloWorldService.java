@@ -1,7 +1,7 @@
 package com.example.firstproject.helloworldapi.service;
 
 import com.example.firstproject.helloworldapi.model.Hello;
-import com.example.firstproject.helloworldapi.springdatajparepository.HelloSpringDataJpaRepository;
+import com.example.firstproject.helloworldapi.repository.HelloSpringDataJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
