@@ -8,6 +8,7 @@ import java.util.Optional;
 import com.example.firstproject.helloworldapi.service.HelloWorldService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -57,7 +58,10 @@ public class HelloWorldController {
 		LOGGER.info("Hello -> {}", hello);
 		helloWorldService.saveHello(hello);
 	}
-	
+
+	@Operation(summary = "Get detail by ID", description = "API to get details of person by their associated ID")
+	@ApiResponse(responseCode = "200", description = "Successful Response")
+	@ApiResponse(responseCode = "404", description = "User not found")
 	@RequestMapping(value= "/getById", method = RequestMethod.GET)
 	public Hello getDataById(@RequestParam(name="id") int id) {
 		Hello hello = helloSpringDataJpaRepository.findById(id);
@@ -72,7 +76,7 @@ public class HelloWorldController {
 //		return hello;
 //	}
 	
-
+	@Operation(summary = "Get detail by status", description = "Get detail of a person by their status")
 	@RequestMapping(value = "/getByStatus", method = RequestMethod.GET)
 	public List<Hello> getDataByStatus(@RequestParam(name="status") boolean status) {
 		List<Hello> list = new ArrayList<Hello>();
