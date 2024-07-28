@@ -1,5 +1,6 @@
 package com.example.firstproject.helloworldapi.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +16,7 @@ public class Hello {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-
+	@Schema(description = "Designation of a person associated with it", example = "Java Developer")
 	private String designation;
 	
 	private String name;
