@@ -8,6 +8,7 @@ import com.example.firstproject.helloworldapi.service.HelloWorldService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,11 @@ public class HelloWorldController {
 	
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public List<Hello> getData(){
+	public List<Hello> getData(HttpServletRequest request){
+		int port = request.getLocalPort();
+		if(port != 9090){
+			return new ArrayList<>();
+		}
 		return helloSpringDataJpaRepository.findAll();
 	}
 
