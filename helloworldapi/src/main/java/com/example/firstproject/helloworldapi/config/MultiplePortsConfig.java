@@ -32,9 +32,8 @@ public class MultiplePortsConfig {
 
         return factory -> {
             for(PortConfig portConfig : portConfigs) {
-                if(portConfig.getStatus().equals(ActiveInactive.Active)){
+                if(ActiveInactive.Active.name().equals(portConfig.getStatus()))
                     factory.addAdditionalTomcatConnectors(createConnector(portConfig.getPortNo()));
-                }
             }
 
 //            factory.addAdditionalTomcatConnectors(createConnector(9090));
