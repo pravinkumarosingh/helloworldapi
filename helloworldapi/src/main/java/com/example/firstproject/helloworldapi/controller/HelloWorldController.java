@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +35,9 @@ public class HelloWorldController {
 
 	@Autowired
 	private HelloWorldService helloWorldService;
+
+	@Value("${custom.application.name}")
+	private List<String> appName;
 	
 	private static final Logger LOGGER = LogManager.getLogger(HelloWorldController.class);
 	
@@ -103,6 +107,17 @@ public class HelloWorldController {
 	@RequestMapping(value = "/getByName", method = RequestMethod.GET)
 	public List<Hello> getByNameAndDesignation(@RequestParam(name="name") String name) {
 		return helloSpringDataJpaRepository.findByNameAndDesignation(name);
+	}
+
+	@RequestMapping(value = "/getAppName", method = RequestMethod.GET)
+	public List<String> getApplicationName() {
+		LOGGER.info("These are the ap name {}" , appName);
+		for (String letter : appName){
+			if (letter.contains("Hi")){
+				return null;
+			}
+		}
+		return appName;
 	}
 
 }
